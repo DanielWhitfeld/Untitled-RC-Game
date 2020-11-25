@@ -18,8 +18,16 @@ public class CameraMovement : MonoBehaviour
     //Camera zoom speed
     public float m_zoomSpeed = 5f;
 
+    //Camera FOV transition speed + default and maximum FOV
+    public float m_FOVSpeed = 0.5f;
+    public float m_maxFOV = 90f;
+    public float m_defaultFOV = 60f;
+
+    //reference for editing camera options (just FOV at the moment)
+    public Camera m_cameraSettings;
+
     //smoothing delay for camera movement
-    private float m_DampTime = 0.2f;
+    private float m_moveDampTime = 0.2f;
 
     //Rotation vectors for the camera
     private float xRotation = 0f;
@@ -40,6 +48,7 @@ public class CameraMovement : MonoBehaviour
         Rotate();
         Move();
         Zoom();
+        ChangeFOV();
         //Cursor.lockState = CursorLockMode.Locked; //Locks + hide Cursor for gameplay
 
         //Cursor.lockState = CursorLockMode.None; //Unlocks Cursor for menus
@@ -49,7 +58,7 @@ public class CameraMovement : MonoBehaviour
     private void Move()
     {
         m_desiredPosition = m_target.position;
-        transform.position = Vector3.SmoothDamp(transform.position, m_desiredPosition, ref m_moveVelocity, m_DampTime);
+        transform.position = Vector3.SmoothDamp(transform.position, m_desiredPosition, ref m_moveVelocity, m_moveDampTime);
     }
 
     //Script that rotates the camera depending on the mouse movement
@@ -78,6 +87,24 @@ public class CameraMovement : MonoBehaviour
         else if(scroll < 0 && m_camera.localPosition.z > m_zoomOutMax)
         {
             m_camera.transform.Translate(Vector3.back * Time.deltaTime * m_zoomSpeed);
+        }
+    }
+
+    private void ReCenter()
+    {
+        //slowly recenters the camera behind the player (has a cooldown while the camera is moving)
+    }
+
+    private void ChangeFOV()
+    {
+        //changes the FOV when the player is moving (MIGHT NEED TO CHANGE KEY IF SOMETHING ELSE IS USED TO ACCELERATE)
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            m_cameraSettings.fieldOfView = Mathf.Lerp(m_cameraSettings.fieldOfView, m_maxFOV, m_FOVSpeed);
+        }
+        else
+        {
+            m_cameraSettings.fieldOfView = Mathf.Lerp(m_cameraSettings.fieldOfView, m_defaultFOV, m_FOVSpeed);
         }
     }
 }

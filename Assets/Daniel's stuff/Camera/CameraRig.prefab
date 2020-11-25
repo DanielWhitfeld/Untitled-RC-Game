@@ -133,3 +133,7 @@ MonoBehaviour:
   m_zoomOutMax: -5
   m_zoomInMax: -3.5
   m_zoomSpeed: 5
+  m_FOVSpeed: 0.5
+  m_maxFOV: 90
+  m_defaultFOV: 60
+  m_cameraSettings: {fileID: 7733806934902285641}
