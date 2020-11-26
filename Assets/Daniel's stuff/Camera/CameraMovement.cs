@@ -26,6 +26,13 @@ public class CameraMovement : MonoBehaviour
     //reference for editing camera options (just FOV at the moment)
     public Camera m_cameraSettings;
 
+    //ReCentering speed
+    public float m_reCenterSpeed = 0.99f;
+
+    //Timer + timer values to tell the camera when to recenter behind the player
+    public float m_maxWaitTime = 3f;
+    private float m_timer = 0f;
+
     //smoothing delay for camera movement
     private float m_moveDampTime = 0.2f;
 
@@ -36,6 +43,7 @@ public class CameraMovement : MonoBehaviour
     //Movement vectors for the camera
     private Vector3 m_moveVelocity;
     private Vector3 m_desiredPosition;
+    private Vector3 m_desiredRotation;
 
     private void Awake()
     {
@@ -45,10 +53,12 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {
         //TODO: Add in cursor lock options depending on the game state (reference the game manager)
+        m_timer -= Time.deltaTime;
         Rotate();
         Move();
         Zoom();
         ChangeFOV();
+        ReCenter();
         //Cursor.lockState = CursorLockMode.Locked; //Locks + hide Cursor for gameplay
 
         //Cursor.lockState = CursorLockMode.None; //Unlocks Cursor for menus
@@ -72,7 +82,12 @@ public class CameraMovement : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -17.5f, 90f);
 
-        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        if(mouseX > 0 && mouseY > 0)
+        {
+            m_timer = m_maxWaitTime;
+        }
+
+       // transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f); OLD ROTATION CODE
     }
 
     private void Zoom()
@@ -93,6 +108,16 @@ public class CameraMovement : MonoBehaviour
     private void ReCenter()
     {
         //slowly recenters the camera behind the player (has a cooldown while the camera is moving)
+        if (m_timer <= 0)
+        {
+            m_timer = 0;
+            m_desiredRotation = new Vector3(m_target.eulerAngles.x, m_target.eulerAngles.y, 0);
+
+            xRotation *= m_reCenterSpeed;
+            yRotation *= m_reCenterSpeed;
+        }
+
+        transform.eulerAngles = m_desiredRotation + new Vector3(xRotation, yRotation, 0);
     }
 
     private void ChangeFOV()
