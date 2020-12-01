@@ -43,6 +43,7 @@ public class HighScores : MonoBehaviour
         //clears high scores list of older values
         scores = new int[scores.Length];
 
+        //creates a new instance of the stream reader
         StreamReader fileReader = new StreamReader(m_currentDirectory + "\\" + m_scoreFileName);
 
         int scoreCount = 0;
@@ -62,6 +63,7 @@ public class HighScores : MonoBehaviour
                 Debug.Log("Invalid line scores file at " + scoreCount + ", using default value.", this);
                 scores[scoreCount] = 0;
             }
+            //increment the counter
             scoreCount++;
         }
         //Close the stream
@@ -71,11 +73,47 @@ public class HighScores : MonoBehaviour
 
     public void SaveScoresToFile()
     {
+        //creates a new instance of the stream writer
+        StreamWriter fileWriter = new StreamWriter(m_currentDirectory + "\\" + m_scoreFileName);
 
+        //writes the lines to the file
+        for(int i = 0; i < scores.Length; i++)
+        {
+            fileWriter.WriteLine(scores[i]);
+        }
+
+        //Close the stream
+        fileWriter.Close();
+        Debug.Log("High scores written to " + m_scoreFileName);
     }
 
     public void AddScore(int newScore)
     {
+        int desiredIndex = -1;
+        for(int i = 0; i < scores.Length; i++)
+        {
+            if(scores[i] > newScore || scores[i] == 0)
+            {
+                //gives desired index the correct position for the score and breaks from the loop
+                desiredIndex = i;
+                break;
+            }
+        }
 
+        //if the score is not high enough it will not be added to the list and the function will be aborted
+        if(desiredIndex < 0)
+        {
+            Debug.Log("Score of " + newScore + " not high enough for high scores list", this);
+            return;
+        }
+
+        for(int i = scores.Length - 1; i > desiredIndex; i--)
+        {
+            scores[i] = scores[i - 1];
+        }
+
+        //insert new score into its place
+        scores[desiredIndex] = newScore;
+        Debug.Log("Score of " + newScore + " entered into high scores at position " + desiredIndex, this);
     }
 }

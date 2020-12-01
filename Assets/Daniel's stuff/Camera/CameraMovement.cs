@@ -39,6 +39,7 @@ public class CameraMovement : MonoBehaviour
     //Rotation vectors for the camera
     private float xRotation = 0f;
     private float yRotation = 0f;
+    private float zRotation = 0f;
 
     //Movement vectors for the camera
     private Vector3 m_moveVelocity;
@@ -54,6 +55,10 @@ public class CameraMovement : MonoBehaviour
     {
         //TODO: Add in cursor lock options depending on the game state (reference the game manager)
         m_timer -= Time.deltaTime;
+
+        //rotates camera back to default position on the z axis
+        
+
         Rotate();
         Move();
         Zoom();
@@ -81,6 +86,27 @@ public class CameraMovement : MonoBehaviour
         yRotation += mouseX;
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -17.5f, 90f);
+
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))//Rotates the camera left when the player turns left
+        {
+            zRotation += 0.2f;
+            yRotation -= 0.5f;
+            m_timer = 0;
+           // Debug.Log("Left turn");
+        }                                                                                                                                //BOTH KEYS CAN BE CHANGE IF NEED BE.
+        else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))//Rotates the camera right when the player turns right
+        {
+            zRotation -= 0.2f;
+            yRotation += 0.5f;
+            m_timer = 0;
+            // Debug.Log("Right turn");
+        }
+        else
+        {
+            zRotation = Mathf.Lerp(zRotation, 0, 0.05f);
+        }
+        //Clamps the z rotation
+        zRotation = Mathf.Clamp(zRotation, -10f, 10f);
 
         if(mouseX > 0 && mouseY > 0)
         {
@@ -117,7 +143,7 @@ public class CameraMovement : MonoBehaviour
             yRotation *= m_reCenterSpeed;
         }
 
-        transform.eulerAngles = m_desiredRotation + new Vector3(xRotation, yRotation, 0);
+        transform.eulerAngles = m_desiredRotation + new Vector3(xRotation, yRotation, zRotation);
     }
 
     private void ChangeFOV()
