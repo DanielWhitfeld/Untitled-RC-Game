@@ -53,20 +53,12 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        //TODO: Add in cursor lock options depending on the game state (reference the game manager)
-        m_timer -= Time.deltaTime;
-
-        //rotates camera back to default position on the z axis
-        
-
-        Rotate();
-        Move();
-        Zoom();
-        ChangeFOV();
-        ReCenter();
-        //Cursor.lockState = CursorLockMode.Locked; //Locks + hide Cursor for gameplay
-
-        //Cursor.lockState = CursorLockMode.None; //Unlocks Cursor for menus
+            m_timer -= Time.deltaTime;//timer for re-centering the camera
+            Rotate();
+            Move();
+            Zoom();
+            ChangeFOV();
+            ReCenter();
     }
 
     //Script to move the camera with the player
@@ -89,14 +81,14 @@ public class CameraMovement : MonoBehaviour
 
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))//Rotates the camera left when the player turns left
         {
-            zRotation += 0.2f;
+            zRotation += 0.05f;
             yRotation -= 0.5f;
             m_timer = 0;
            // Debug.Log("Left turn");
         }                                                                                                                                //BOTH KEYS CAN BE CHANGE IF NEED BE.
         else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))//Rotates the camera right when the player turns right
         {
-            zRotation -= 0.2f;
+            zRotation -= 0.05f;
             yRotation += 0.5f;
             m_timer = 0;
             // Debug.Log("Right turn");
