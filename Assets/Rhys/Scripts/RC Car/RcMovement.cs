@@ -7,8 +7,8 @@ public class RcMovement : MonoBehaviour
     public float m_Speed = 12f; // How fast the RC Car moves forward and back
     public float m_TurnSpeed = 180f; // How fast the RC Car turns in degrees per second
     private Rigidbody m_Rigidbody;
-    private float m_MovementInputValue; // The current value of the movement input
-    private float m_TurnInputValue; // the current value of the turn input
+    public float m_MovementInputValue; // The current value of the movement input
+    public float m_TurnInputValue; // the current value of the turn input
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
