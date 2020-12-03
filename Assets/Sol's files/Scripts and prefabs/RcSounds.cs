@@ -6,6 +6,7 @@ public class RcSounds : MonoBehaviour
 {
     public RcMovement RcMovementReference;
     private float RC_speed;
+    public float SoundSpeedThreshold = 0f;
 
     //creating references to audio sources
     public AudioSource CarIdleSource;
@@ -20,7 +21,9 @@ public class RcSounds : MonoBehaviour
     public AudioClip CarImpactClip3;
     public AudioClip CarImpactClip4;
 
-    private bool StartedDriving = false;
+    public float ImpactMaxVolume = 1.2f;
+    public float ImpactMinVolume = 0.7f;
+
     private float CarIdleCountdown = 100f;
 
     // Start is called before the first frame update
@@ -35,10 +38,39 @@ public class RcSounds : MonoBehaviour
         IdleToDriveTransition();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.relativeVelocity.magnitude > 0.5)
+        {
+            //initializing the sound based on how fast the car is going when it collides
+            RCcarImpactSound();
+        }
+    }
+
+    void RCcarImpactSound()
+    {
+        //randomizing the choice of sound to play
+        int ClipChoice = Random.Range(1, 4);
+        switch(ClipChoice)
+        {
+            case 1: CarImpactSource.clip = CarImpactClip1;
+                break;
+            case 2: CarImpactSource.clip = CarImpactClip2;
+                break;
+            case 3: CarImpactSource.clip = CarImpactClip3;
+                break;
+            case 4: CarImpactSource.clip = CarImpactClip4;
+                break;
+        }
+        CarImpactSource.pitch = Random.Range(0.8f, 1);
+        CarImpactSource.volume = Random.Range(ImpactMinVolume, ImpactMaxVolume);
+        CarImpactSource.Play();
+    }
+
     void IdleToDriveTransition()
     {
         //transition from drive sound to idle sound
-        if (RcMovementReference.m_MovementInputValue == 0f)
+        if (RcMovementReference.m_MovementInputValue == SoundSpeedThreshold)
         {
             if (CarIdleSource.volume != 1f)
             {
@@ -48,25 +80,25 @@ public class RcSounds : MonoBehaviour
             {
                 CarDriveSource.volume -= 0.2f;
             }
+            //countdown to randomly play other idle sounds
+            CarIdleCountdown -= 25 * Time.deltaTime;
+            if (CarIdleCountdown <= 0f)
+            {
+                CarIdleCountdown = Random.Range(100, 200);
+                CarRevSource.pitch = Random.Range(0.7f, 1.1f);
+                CarRevSource.volume = Random.Range(0.6f, 1f);
+                CarRevSource.Play();
+            }
         }
 
-        //countdown to randomly play other idle sounds
-        CarIdleCountdown -= 25 * Time.deltaTime;
-        if (CarIdleCountdown <= 0f)
-        {
-            CarIdleCountdown = Random.Range(100, 200);
-            CarRevSource.pitch = Random.Range(0.7f, 1.1f);
-            CarRevSource.volume = Random.Range(0.6f, 1f);
-            CarRevSource.Play();
-        }
-        else
+        if (RcMovementReference.m_MovementInputValue != SoundSpeedThreshold)
         {
             //transition from idle sound to drive sound
             if (CarIdleSource.volume != 0f)
             {
                 CarIdleSource.volume -= 0.1f;
             }
-            if (CarDriveSource.volume != 0.75f)
+            if (CarDriveSource.volume != 0.5f)
             {
                 CarDriveSource.volume += 0.025f;
             }
