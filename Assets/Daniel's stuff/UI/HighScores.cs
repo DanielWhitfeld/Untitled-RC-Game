@@ -92,7 +92,7 @@ public class HighScores : MonoBehaviour
         int desiredIndex = -1;
         for(int i = 0; i < scores.Length; i++)
         {
-            if(scores[i] > newScore || scores[i] == 0)
+            if(scores[i] < newScore || scores[i] == 300)
             {
                 //gives desired index the correct position for the score and breaks from the loop
                 desiredIndex = i;

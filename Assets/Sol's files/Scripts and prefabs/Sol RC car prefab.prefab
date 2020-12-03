@@ -97,12 +97,12 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751994456420399472}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100000000
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &1751994456420399474
@@ -130,7 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d1164cf7640d045b746c8d054acec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RcMovementReference: {fileID: 0}
+  RcMovementReference: {fileID: 1751994456420399475}
+  SoundSpeedThreshold: 0
   CarIdleSource: {fileID: 6603558491880943941}
   CarDriveSource: {fileID: 9142131972300917840}
   CarImpactSource: {fileID: 5591245226355171958}
@@ -140,6 +141,8 @@ MonoBehaviour:
   CarImpactClip2: {fileID: 8300000, guid: 1e35d8f7ca3108847a09758d37dc198a, type: 3}
   CarImpactClip3: {fileID: 8300000, guid: 26eeb4a027ac98f429503d6172499291, type: 3}
   CarImpactClip4: {fileID: 8300000, guid: 3dd26c88256d3f641b5fe1fd4a3bfedf, type: 3}
+  ImpactMaxVolume: 1.5
+  ImpactMinVolume: 0.9
 --- !u!114 &1751994456420399475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +327,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f9e1aa8b57e5e6b4c9f2af574c6d8908, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6f8dbcc3982d5824fb91de3a3613aa85, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -798,6 +801,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1751994456420399486}
     m_Modifications:
+    - target: {fileID: 7733806934902285640, guid: dcfcf8d3075f76f4bb037bf7f6326d76,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733806934902285640, guid: dcfcf8d3075f76f4bb037bf7f6326d76,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.11746155
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733806934902285640, guid: dcfcf8d3075f76f4bb037bf7f6326d76,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733806934902285640, guid: dcfcf8d3075f76f4bb037bf7f6326d76,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733806934902285640, guid: dcfcf8d3075f76f4bb037bf7f6326d76,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99307746
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733806934902285640, guid: dcfcf8d3075f76f4bb037bf7f6326d76,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 13.491
+      objectReference: {fileID: 0}
     - target: {fileID: 7733806936634200250, guid: dcfcf8d3075f76f4bb037bf7f6326d76,
         type: 3}
       propertyPath: m_LocalPosition.x
