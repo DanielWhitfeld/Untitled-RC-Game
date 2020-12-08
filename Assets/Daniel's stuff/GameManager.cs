@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     //game state instance and reference
     public GameState m_GameState;
 
+    public RcMovement RC;
+
     private void Awake()
     {
         m_GameState = GameState.Start;
@@ -42,10 +44,11 @@ public class GameManager : MonoBehaviour
                 {
                     m_GameState = GameState.Lose;
                 }
-                else if(Input.GetKeyDown(KeyCode.Keypad1))//ADD DIFFERENT CODE FOR WINNING
+                else if(RC.m_hasWon == true)//ADD DIFFERENT CODE FOR WINNING
                 {
                     m_HighScores.AddScore(Mathf.RoundToInt(m_gameTimer));
                     m_HighScores.SaveScoresToFile();
+                    RC.m_hasWon = false;
                     m_GameState = GameState.Win;
                 }
                 break;

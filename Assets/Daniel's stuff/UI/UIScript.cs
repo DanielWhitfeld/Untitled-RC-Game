@@ -27,7 +27,6 @@ public class UIScript : MonoBehaviour
     public Text m_highScoresText;
 
     private bool m_hasWon;
-    public GameManager gameManager;
 
     public void Awake()
     {

@@ -9,7 +9,8 @@ public class RcMovement : MonoBehaviour
     private Rigidbody m_Rigidbody;
     public float m_MovementInputValue; // The current value of the movement input
     public float m_TurnInputValue; // the current value of the turn input
-    public UIScript uiscript;
+                                   // public UIScript uiscript;
+    public bool m_hasWon = false;
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -68,7 +69,8 @@ public class RcMovement : MonoBehaviour
         if (other.tag == "finishline")
         {
             Debug.Log("testing if hit finish line");
-            uiscript.OnWinOrLose();
+            //uiscript.OnWinOrLose();
+            m_hasWon = true;
 
 
 
