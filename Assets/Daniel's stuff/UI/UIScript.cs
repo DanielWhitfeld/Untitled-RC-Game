@@ -27,8 +27,9 @@ public class UIScript : MonoBehaviour
     public Text m_highScoresText;
 
     private bool m_hasWon;
+    public GameManager gameManager;
 
-    private void Awake()
+    public void Awake()
     {
         m_hasWon = true;
         m_playingPanel.SetActive(false);
@@ -138,7 +139,7 @@ public class UIScript : MonoBehaviour
         m_controlsPanel.SetActive(false);
         m_highScoresPanel.SetActive(false);
     }
-
+    
     //Closes the application
     public void OnQuit()
     {

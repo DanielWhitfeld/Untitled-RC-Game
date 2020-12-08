@@ -9,6 +9,7 @@ public class RcMovement : MonoBehaviour
     private Rigidbody m_Rigidbody;
     public float m_MovementInputValue; // The current value of the movement input
     public float m_TurnInputValue; // the current value of the turn input
+    public UIScript uiscript;
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -62,7 +63,18 @@ public class RcMovement : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "finishline")
+        {
+            Debug.Log("testing if hit finish line");
+            uiscript.OnWinOrLose();
 
+
+
+        }
+
+    }
 
 
 }
