@@ -1217,6 +1217,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &624938066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 584091491427124204, guid: 523f77697a28b174484104e4981f0302,
+    type: 3}
+  m_PrefabInstance: {fileID: 1618032167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &690384276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,6 +1380,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &805465355 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 765464048081603279, guid: 523f77697a28b174484104e4981f0302,
+    type: 3}
+  m_PrefabInstance: {fileID: 1618032167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &805465360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805465355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9872d948e276a93418ddea8cdbb123ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneName: Andrej Test
 --- !u!114 &925058153 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 965434712721333087, guid: 29378ae2b90abee46bac57464b7eb7eb,
@@ -1669,7 +1694,7 @@ PrefabInstance:
     - target: {fileID: 1751994456420399486, guid: 612de0d5f7747bc439211f59cb9384b5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 902.44147
+      value: 93.7
       objectReference: {fileID: 0}
     - target: {fileID: 1751994456420399486, guid: 612de0d5f7747bc439211f59cb9384b5,
         type: 3}
@@ -1679,7 +1704,7 @@ PrefabInstance:
     - target: {fileID: 1751994456420399486, guid: 612de0d5f7747bc439211f59cb9384b5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 758.8376
+      value: 78.2
       objectReference: {fileID: 0}
     - target: {fileID: 1751994456420399486, guid: 612de0d5f7747bc439211f59cb9384b5,
         type: 3}
@@ -2269,6 +2294,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 584091491427124204, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_Name
+      value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 765464048081603273, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 765464048090016601, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 765464048175600311, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 765464048210526516, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 765464048210526517, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 765464048210526517, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 765464048375745222, guid: 523f77697a28b174484104e4981f0302,
         type: 3}
       propertyPath: m_highScores
@@ -2279,6 +2339,16 @@ PrefabInstance:
       propertyPath: GM
       value: 
       objectReference: {fileID: 925058154}
+    - target: {fileID: 765464048375745222, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: _sceneName
+      value: Andrej Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 765464048375745222, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_Background
+      value: 
+      objectReference: {fileID: 624938066}
     - target: {fileID: 765464048375745223, guid: 523f77697a28b174484104e4981f0302,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2389,6 +2459,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 765464048375745275, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 765464048494132842, guid: 523f77697a28b174484104e4981f0302,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2414,6 +2489,13 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 765464049070262689, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_Text
+      value: 'W, A, S, D to Drive
+
+        Mouse for Camera'
+      objectReference: {fileID: 0}
     - target: {fileID: 765464049070262695, guid: 523f77697a28b174484104e4981f0302,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2464,6 +2546,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 765464049449975573, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 765464049550571574, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 765464050116250361, guid: 523f77697a28b174484104e4981f0302,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2488,6 +2580,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 765464050149206433, guid: 523f77697a28b174484104e4981f0302,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonPressed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 523f77697a28b174484104e4981f0302, type: 3}

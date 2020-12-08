@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class UIScript : MonoBehaviour
+
+
+
+    public class UIScript : MonoBehaviour
 {
     //reference to the game manager and high scores
     public GameManager GM;
@@ -14,6 +18,7 @@ public class UIScript : MonoBehaviour
     public Text m_Timer;
 
     public GameObject m_titlePanel;
+    public GameObject m_Background;
 
     public GameObject m_winLosePanel;
     public Text m_winLoseText;
@@ -26,7 +31,10 @@ public class UIScript : MonoBehaviour
     public Text m_highRetryButtonText;
     public Text m_highScoresText;
 
+    
     private bool m_hasWon;
+
+    
 
     public void Awake()
     {
@@ -35,6 +43,8 @@ public class UIScript : MonoBehaviour
         m_winLosePanel.SetActive(false);
         m_controlsPanel.SetActive(false);
         m_highScoresPanel.SetActive(false);
+        m_Background.SetActive(true);
+
     }
 
     private void Update()
@@ -66,6 +76,7 @@ public class UIScript : MonoBehaviour
         m_winLosePanel.SetActive(false);
         m_controlsPanel.SetActive(false);
         m_highScoresPanel.SetActive(false);
+        m_Background.SetActive(false);
 
         //sets the gamestate to playing
         GM.m_GameState = GameManager.GameState.Playing;
@@ -88,6 +99,7 @@ public class UIScript : MonoBehaviour
         m_titlePanel.SetActive(false);
         m_winLosePanel.SetActive(false);
         m_highScoresPanel.SetActive(false);
+        m_Background.SetActive(true);
     }
 
     //Closes all of the menus except for the high scores screen
@@ -116,6 +128,7 @@ public class UIScript : MonoBehaviour
         m_playingPanel.SetActive(false);
         m_titlePanel.SetActive(false);
         m_winLosePanel.SetActive(false);
+        m_Background.SetActive(true);
     }
 
     public void OnWinOrLose()
@@ -137,6 +150,7 @@ public class UIScript : MonoBehaviour
         m_playingPanel.SetActive(false);
         m_controlsPanel.SetActive(false);
         m_highScoresPanel.SetActive(false);
+        m_Background.SetActive(true);
     }
     
     //Closes the application
@@ -144,4 +158,19 @@ public class UIScript : MonoBehaviour
     {
         Application.Quit();
     }
-}
+    
+    
+
+        public string _sceneName = string.Empty;
+
+
+        public void OnButtonPressed()
+        {
+            SceneManager.LoadScene(_sceneName);
+
+        }
+
+
+
+    }
+
